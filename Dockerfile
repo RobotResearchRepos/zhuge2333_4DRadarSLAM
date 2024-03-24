@@ -6,6 +6,11 @@ RUN apt-get update \
  && apt-get install -y git \
  && rm -rf /var/lib/apt/lists/*
 
+# Source code dependencies
+RUN git clone https://github.com/koide3/ndt_omp.git \
+ && cd ndt_omp && mkdir build && cd build \
+ && cmake .. && make install && cd .. && rm -fr ndt_omp
+ 
 # Code repository
 
 RUN mkdir -p /catkin_ws/src/
